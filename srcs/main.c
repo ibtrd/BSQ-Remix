@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:10:39 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 01:24:43 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	main(int ac, char **av)
 	ft_dprintf(2, "charset=%s | height=%d | width=%d\n", map.c, map.heigh, map.width);
 	write(2, map.map, map.heigh * map.width);
 	test(&map);
+	display_map(&map);
 	return (0);
 }

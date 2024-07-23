@@ -15,6 +15,7 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	main \
 	convert_map \
+	display_map \
 
 # ********** ENV ********** #
 
