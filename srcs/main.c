@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:04:56 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 01:10:39 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	main(int ac, char **av)
 		return (1);
 	ft_dprintf(2, "charset=%s | height=%d | width=%d\n", map.c, map.heigh, map.width);
 	write(2, map.map, map.heigh * map.width);
+	test(&map);
 	return (0);
 }
