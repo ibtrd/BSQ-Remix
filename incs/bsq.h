@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:37:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 22:48:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/23 23:54:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ typedef struct s_map
 	int		heigh;
 	char	c[CHARS];
 }	t_map;
+
+int	convert_map(t_map *map, int fd);
+int	get_map_infos(t_map *map, int fd);
 
 #endif //BSQ_H /* *********************************************************** */

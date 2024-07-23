@@ -89,7 +89,7 @@ static int	strtoi_accretion(const char *s, const char **endptr, int base, \
 		acc = acc * base + c;
 		c = *s++;
 	}
-	*endptr = s;
+	*endptr = s - 1;
 	return (acc);
 }
 
