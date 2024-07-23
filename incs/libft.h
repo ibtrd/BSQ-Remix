@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:37:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 22:48:55 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/07/23 22:56:50 by ibertran          #+#    #+#             */
+/*   Updated: 2024/07/23 22:57:40 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
-# define EMPTY 0
-# define OBSTACLE 1
-# define FULL 2
-# define CHARS 3
+#include <stddef.h>
 
-typedef struct s_map
-{
-	char	*map;
-	int		width;
-	int		heigh;
-	char	c[CHARS];
-}	t_map;
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *str);
 
-#endif //BSQ_H /* *********************************************************** */
+#endif //LIBFT_H /* ********************************************************* */
+

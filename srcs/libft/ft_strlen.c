@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:37:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 22:48:55 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/07/23 22:53:51 by ibertran          #+#    #+#             */
+/*   Updated: 2024/07/23 22:54:14 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BSQ_H
-# define BSQ_H
+#include <stddef.h>
 
-# define EMPTY 0
-# define OBSTACLE 1
-# define FULL 2
-# define CHARS 3
-
-typedef struct s_map
+size_t	ft_strlen(const char *str)
 {
-	char	*map;
-	int		width;
-	int		heigh;
-	char	c[CHARS];
-}	t_map;
+	size_t	i;
 
-#endif //BSQ_H /* *********************************************************** */
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}

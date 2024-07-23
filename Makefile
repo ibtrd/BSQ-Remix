@@ -15,12 +15,14 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	main \
 
-# # ********** ENV ********** #
+# ********** ENV ********** #
 
-# SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
+SRC += $(addprefix $(LIBFT_DIR),$(LIBFT_SRC))
 
-# INIT_DIR = env/
-# INIT_SRC = \
+LIBFT_DIR = libft/
+LIBFT_SRC = \
+	ft_strlen \
+	ft_strdup \
 
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
