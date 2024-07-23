@@ -18,11 +18,11 @@ SRC = \
 
 # ********** ENV ********** #
 
-SRC += $(addprefix $(LIBFT_DIR),$(LIBFT_SRC))
+SRC += $(addprefix $(EXEC_DIR),$(EXEC_SRC))
 
-LIBFT_DIR = libft/
-LIBFT_SRC = \
-
+EXEC_DIR = execution/
+EXEC_SRC = \
+	exec
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

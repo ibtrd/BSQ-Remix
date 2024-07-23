@@ -53,3 +53,4 @@ dkms.conf
 .make/.mklog
 bsq
 .vscode/c_cpp_properties.json
+.make/.trace
