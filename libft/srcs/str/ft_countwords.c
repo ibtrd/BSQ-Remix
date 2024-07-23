@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_countwords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/14 05:13:03 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/14 05:25:18 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include <stddef.h>
+#include "libft.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+int	ft_countwords(const char *str, const char *sep)
 {
-	t_map	map;
+	int		count;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_ischarset(str[i], sep)
+			&& (ft_ischarset(str[i + 1], sep) || !str[i + 1]))
+			count++;
+		i++;
+	}
+	return (count);
 }

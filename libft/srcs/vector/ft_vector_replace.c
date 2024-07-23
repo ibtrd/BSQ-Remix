@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:10:33 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:30:12 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+int	ft_vector_replace(t_vector *v, size_t index, void *new)
 {
-	t_map	map;
-
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v || index >= v->total)
+		return (FAILURE);
+	if (v->infos.del)
+		v->infos.del((void **)ft_vector_get(v, index));
+	ft_memcpy(v->ptr + index * v->infos.data_size, new, v->infos.data_size);
+	return (SUCCESS);
 }

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vfree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:11:12 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/02 01:49:16 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+void	ft_vfree(void *var)
 {
-	t_map	map;
-
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!var)
+		return ;
+	free(*(void **)var);
 }

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2023/11/06 19:14:29 by ibertran          #+#    #+#             */
+/*   Updated: 2023/11/13 09:42:45 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_map	map;
+	void	*ret;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	ret = s;
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = (char)c;
+		i++;
+	}
+	return (ret);
 }

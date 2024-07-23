@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_hexlow.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:07:42 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/19 22:07:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+#include "ft_integer.h"
+#include "ft_string.h"
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+int	convert_hexlow(t_vector *buffer, va_list *args)
 {
-	t_map	map;
+	size_t	nb;
+	char	*str;
+	int		error;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	nb = va_arg(*args, int);
+	str = ft_ulltoa_base(nb, "0123456789abcdef");
+	if (!str)
+		return (FAILURE);
+	error = ft_vector_join(buffer, str, ft_strlen(str));
+	free(str);
+	return (error);
 }

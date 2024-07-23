@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_search.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/13 03:38:16 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:29:17 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+void	*ft_vector_search(t_vector *v, const void *item)
 {
-	t_map	map;
+	void	*ptr;
+	size_t	index;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v)
+		return (NULL);
+	index = 0;
+	while (index < v->total)
+	{
+		ptr = v->ptr + index * v->infos.data_size;
+		if (!ft_memcmp(ptr, item, v->infos.data_size))
+			return (ptr);
+		index++;
+	}
+	return (NULL);
 }

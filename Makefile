@@ -14,6 +14,7 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
 	main \
+	convert_map \
 
 # ********** ENV ********** #
 
@@ -21,13 +22,12 @@ SRC += $(addprefix $(LIBFT_DIR),$(LIBFT_SRC))
 
 LIBFT_DIR = libft/
 LIBFT_SRC = \
-	ft_strlen \
-	ft_strdup \
 
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \
+	libft/libft.a
 		
 LIBS = \
 	$(patsubst lib%.a,%,$(notdir $(LIBS_PATH))) \

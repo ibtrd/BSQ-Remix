@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vprint_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/13 04:52:29 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/05 18:13:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include <stdio.h>
 
-#include "bsq.h"
+#include "ft_char.h"
 
-int	main(int ac, char **av)
+void	ft_vprint_char(void *ptr, size_t index)
 {
-	t_map	map;
+	const char	cmp[] = {'\0', '\n', '\t', ' '};
+	const char	*res[] = {"\\0", "\\n", "\\t", " ", NULL};
+	size_t		i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	(void)index;
+	if (!ptr)
+		return ;
+	i = 0;
+	while (res[i])
+	{
+		if (*(char *)ptr == cmp[i])
+		{
+			printf("%s%s%s", "\e[36;40m", (char *)res[i], "\e[0m");
+			return ;
+		}
+		i++;
+	}
+	printf("%c", *(char *)ptr);
 }

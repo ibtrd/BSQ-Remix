@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_setn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/11 05:07:51 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:36:34 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+int	ft_vector_setn(t_vector *v, size_t index, const void *item, size_t n)
 {
-	t_map	map;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v || index + n > v->total)
+		return (FAILURE);
+	i = 0;
+	while (i < n)
+	{
+		ft_memcpy(v->ptr + (index + i) * v->infos.data_size,
+			item,
+			v->infos.data_size);
+		i++;
+	}
+	return (SUCCESS);
 }

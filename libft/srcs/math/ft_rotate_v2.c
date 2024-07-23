@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_rotate_v2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/06/11 19:08:35 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 19:08:36 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include <math.h>
 
-#include "bsq.h"
+#include "ft_math.h"
 
-int	main(int ac, char **av)
+void	ft_rotate_v2(t_v2d_d *v, double angle)
 {
-	t_map	map;
+	double	old_x;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	old_x = v->x;
+	v->x = v->x * cos(angle) - v->y * sin(angle);
+	v->y = old_x * sin(angle) + v->y * cos(angle);
 }

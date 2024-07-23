@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2023/11/08 21:41:21 by ibertran          #+#    #+#             */
+/*   Updated: 2024/02/19 00:50:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include <stddef.h>
 
-#include "bsq.h"
+#include "ft_lst.h"
 
-int	main(int ac, char **av)
+void	ft_lstclear(t_list **head, void (*del)(void*))
 {
-	t_map	map;
+	t_list	*curr;
+	t_list	*temp;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!head)
+		return ;
+	curr = *head;
+	while (curr)
+	{
+		temp = curr;
+		curr = curr->next;
+		ft_lstdelone(temp, del);
+	}
+	*head = NULL;
 }

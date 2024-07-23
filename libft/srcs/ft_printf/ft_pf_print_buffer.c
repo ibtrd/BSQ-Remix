@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_pf_print_buffer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:07:38 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/19 22:07:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
 
-#include "bsq.h"
+#include "ft_vector.h"
 
-int	main(int ac, char **av)
+int	print_buffer(int fd, t_vector *buffer)
 {
-	t_map	map;
+	ssize_t	status;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	status = write(fd, buffer->ptr, buffer->total - 1);
+	ft_vector_free(buffer);
+	return (status);
 }

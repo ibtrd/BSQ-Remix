@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_trim.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/18 04:01:20 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:29:17 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "bsq.h"
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-int	main(int ac, char **av)
+int	ft_vector_trim(t_vector *v)
 {
-	t_map	map;
+	void	*new;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v)
+		return (FAILURE);
+	if (v->total == v->infos.capacity)
+		return (SUCCESS);
+	new = malloc(v->infos.data_size * v->total);
+	if (!new)
+		return (FAILURE);
+	ft_memcpy(new, v->ptr, v->infos.data_size * v->total);
+	free(v->ptr);
+	v->ptr = new;
+	v->infos.capacity = v->total;
+	return (SUCCESS);
 }

@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_fmalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/10 23:58:51 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/06 17:40:22 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <errno.h>
 #include <unistd.h>
+#include <time.h>
+#include <stdio.h>
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+void	*ft_fmalloc(size_t size)
 {
-	t_map	map;
+	static int	i = 0;
+	static int	max = 0;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!max)
+	{
+		max = size;
+		return (NULL);
+	}
+	if (i++ > max)
+	{
+		dprintf(STDERR_FILENO, "Forcing ft_fmalloc() failure! (call^%d)\n", i);
+		errno = ENOMEM;
+		return (NULL);
+	}
+	return (malloc(size));
 }

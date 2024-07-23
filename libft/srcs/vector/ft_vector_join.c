@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_join.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/14 23:55:07 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:34:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+int	ft_vector_join(t_vector *v, void *items, size_t n)
 {
-	t_map	map;
-
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v)
+		return (FAILURE);
+	while (v->total + n > v->infos.capacity)
+	{
+		if (ft_vector_resize(v, v->infos.capacity << 1))
+			return (FAILURE);
+	}
+	ft_memcpy(v->ptr + v->infos.data_size * v->total,
+		items,
+		v->infos.data_size * n);
+	v->total += n;
+	return (SUCCESS);
 }

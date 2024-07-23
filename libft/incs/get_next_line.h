@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:07:00 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/19 22:07:03 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include "bsq.h"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 
-int	main(int ac, char **av)
-{
-	t_map	map;
+# ifndef GNL_VECTOR_SIZE
+#  define GNL_VECTOR_SIZE 32
+# endif
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
-}
+# ifndef GNL_OPEN_MAX
+#  define GNL_OPEN_MAX 1024
+# endif
+
+#endif

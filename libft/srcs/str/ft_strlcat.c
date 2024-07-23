@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2023/11/07 18:11:00 by ibertran          #+#    #+#             */
+/*   Updated: 2023/11/23 13:54:01 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
-#include "bsq.h"
-
-int	main(int ac, char **av)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_map	map;
+	size_t	i;
+	size_t	len;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!dst && !size)
+		return (ft_strlen(src));
+	len = ft_strlen(dst);
+	if (len > size)
+		len = size;
+	if (len < size)
+	{
+		i = 0;
+		while (src[i] && len + i < size - 1)
+		{
+			dst[len + i] = src[i];
+			i++;
+		}
+		dst[len + i] = '\0';
+	}
+	return (len + ft_strlen(src));
 }

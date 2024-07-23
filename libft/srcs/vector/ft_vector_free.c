@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/04/19 22:10:14 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/29 16:30:12 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "bsq.h"
+#include "ft_vector.h"
+#include "ft_mem.h"
 
-int	main(int ac, char **av)
+int	ft_vector_free(t_vector *v)
 {
-	t_map	map;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!v)
+		return (FAILURE);
+	if (v->infos.del)
+	{
+		i = 0;
+		while (i < v->total)
+			v->infos.del((void **)ft_vector_get(v, i++));
+	}
+	free(v->ptr);
+	ft_memset(v, '\0', sizeof(t_vector));
+	return (SUCCESS);
 }

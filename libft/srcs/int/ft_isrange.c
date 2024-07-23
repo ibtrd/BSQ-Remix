@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_isrange.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:53:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 22:59:26 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2023/12/31 15:01:54 by ibertran          #+#    #+#             */
+/*   Updated: 2023/12/31 15:02:01 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include "libft.h"
-
-char	*ft_strdup(const char *str)
+int	ft_isrange(int i, int start, int end)
 {
-	size_t	len;
-	char	*ptr;
-
-	ptr = NULL;
-	len = ft_strlen(str);
-	ptr = malloc(sizeof(char) * (len + 1));
-	if (!ptr)
-		return (NULL);
-	ptr[len] = '\0';
-	while (len--)
-		ptr[len] = str[len];
-	return (ptr);
+	if (i >= start && i <= end)
+		return (1);
+	return (0);
 }

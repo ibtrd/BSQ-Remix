@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vector_dealloc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/23 23:19:51 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/05 20:59:18 by ibertran          #+#    #+#             */
+/*   Updated: 2024/04/19 22:09:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-#include "bsq.h"
+#include "ft_vector.h"
 
-int	main(int ac, char **av)
+int	ft_vector_dealloc(t_vector **ptr, size_t n)
 {
-	t_map	map;
+	size_t	i;
 
-	(void)ac;
-	(void)av;
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	return (0);
+	if (!ptr || !*ptr || !n)
+		return (FAILURE);
+	i = 0;
+	while (i < n)
+		ft_vector_free((*ptr) + i++);
+	free(*ptr);
+	*ptr = NULL;
+	return (SUCCESS);
 }
