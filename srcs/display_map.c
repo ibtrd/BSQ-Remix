@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:16:33 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/07/24 01:09:42 by ibertran          #+#    #+#             */
+/*   Updated: 2024/07/24 01:18:19 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
 
-#include "libft.h"
 #include "bsq.h"
 
-int	main(int ac, char **av)
+int	display_map(t_map *map)
 {
-	t_map	map;
+	int	i;
+	int	j;
 
-	map = (t_map){0};
-	(void)ac;
-	(void)av;
-	if (get_map_infos(&map, STDIN_FILENO))
-		return (1);
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	ft_dprintf(2, "charset=%s | height=%d | width=%d\n", map.c, map.heigh, map.width);
-	write(2, map.map, map.heigh * map.width);
-
-	display_map(&map);
+	i = 0;
+	while (i < map->heigh)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			write(1, map->c + map->map[(i * map->width) + j], 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
 	return (0);
 }
