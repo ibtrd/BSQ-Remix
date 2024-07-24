@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 23:05:26 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:07:31 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 04:44:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ int	convert_line(t_map *map, char *line, t_vector *buffer)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		if (line[i] == map->c[EMPTY])
-			line[i] = EMPTY;
-		else if (line[i] == map->c[OBSTACLE])
-			line[i] = OBSTACLE;
-		else
+		if (line[i] != map->c[EMPTY] && line[i] != map->c[OBSTACLE])
 			return (FAILURE);
 		i++;
 	}
@@ -73,7 +69,7 @@ int	convert_line(t_map *map, char *line, t_vector *buffer)
 		map->width = i;
 	else if (map->width != i)
 		return (FAILURE);
-	if (ft_vector_join(buffer, line, i))
+	if (ft_vector_join(buffer, line, i + 1))
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -84,7 +80,7 @@ int	convert_map(t_map *map, int fd)
 	char		*line;
 	int			n;
 
-	if (ft_vector_init(&buffer, sizeof(char), 0, NULL))
+	if (ft_vector_init(&buffer, sizeof(char), map->heigh * 2, NULL))
 		return (FAILURE);
 	n = 0;
 	while (get_next_line(fd, &line) != FAILURE && line)
@@ -94,8 +90,6 @@ int	convert_map(t_map *map, int fd)
 			ft_vector_free(&buffer);
 			return (FAILURE);
 		}
-
-		// ft_dprintf(2, "%s", line);
 		free(line);
 	}
 	map->map = buffer.ptr;

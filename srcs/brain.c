@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   brain.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 01:27:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:59:41 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 04:49:00 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	solve(int fd)
 	if (convert_map(&map, fd))
 		return (1);
 	// ft_dprintf(2, "charset=%s | height=%d | width=%d\n", map.c, map.heigh, map.width);
-	status = test(&map);
+	status = solver(&map);
 	if (!status)
 		display_map(&map);
 	free(map.map);
