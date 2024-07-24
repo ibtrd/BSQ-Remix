@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:50:09 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/07/24 05:50:39 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 06:01:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static int	fill_map(int *int_map, t_map *map, int index_max);
 static int	*alloc_int_map(t_map map);
 static int	fill_int_map(int *int_map, int width, int heigh);
-static int	get_min(int *int_map, int width, int i);
+static void	get_min(int *int_map, int width, int i, int *max, int *index_max);
 
 int	solver(t_map *map)
 {
@@ -56,7 +56,6 @@ static int	*alloc_int_map(t_map map)
 			int_map[j] = 1;
 		else
 			int_map[j] = -1;
-		printf("[%d]", int_map[j]);
 		i++;
 		j++;
 	}
@@ -67,7 +66,6 @@ static int	*alloc_int_map(t_map map)
 static int	fill_int_map(int *int_map, int width, int heigh)
 {
 	int	i;
-	int	min;
 	int	max;
 	int	index_max;
 
@@ -77,21 +75,18 @@ static int	fill_int_map(int *int_map, int width, int heigh)
 	while (i < width * heigh)
 	{
 		if (int_map[i] == -1)
+			get_min(int_map, width, i, &max, &index_max);
+		if (1 == int_map[i] && 0 == max)
 		{
-			min = get_min(int_map, width, i);
-			int_map[i] = min + 1;
-			if (min + 1 > max)
-			{
-				max = min + 1;
-				index_max = i;
-			}
+			max = 1;
+			index_max = i;
 		}
 		i++;
 	}
 	return (index_max);
 }
 
-static int	get_min(int *int_map, int width, int i)
+static void	get_min(int *int_map, int width, int i, int *max, int *index_max)
 {
 	int	min;
 
@@ -100,7 +95,12 @@ static int	get_min(int *int_map, int width, int i)
 		min = int_map[i - width];
 	if (min > int_map[i - width - 1])
 		min = int_map[i - width - 1];
-	return (min);
+	int_map[i] = min + 1;
+	if (min + 1 > *max)
+	{
+		*max = min + 1;
+		*index_max = i;
+	}
 }
 
 static int	fill_map(int *int_map, t_map *map, int index_max)

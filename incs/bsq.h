@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:37:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:57:53 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 02:36:24 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	brain(char *filepath);
 int		convert_map(t_map *map, int fd);
 int		get_map_infos(t_map *map, int fd);
 int		display_map(t_map *map);
-int		test(t_map *map);
+int		solver(t_map *map);
 
 #endif //BSQ_H /* *********************************************************** */

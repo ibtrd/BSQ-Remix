@@ -17,14 +17,7 @@ SRC = \
 	convert_map \
 	display_map \
 	brain \
-
-# ********** ENV ********** #
-
-SRC += $(addprefix $(EXEC_DIR),$(EXEC_SRC))
-
-EXEC_DIR = execution/
-EXEC_SRC = \
-	exec
+	exec \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
@@ -43,7 +36,7 @@ INCS = \
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
-OFLAGS 		=	-O3
+OFLAGS 		=	-Ofast
 
 DEFINES		=
 
