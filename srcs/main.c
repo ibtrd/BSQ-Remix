@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:28:50 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:24:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 02:00:25 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 
 int	main(int ac, char **av)
 {
-	t_map	map;
+	int	i;
 
-	map = (t_map){0};
-	(void)ac;
-	(void)av;
-	if (get_map_infos(&map, STDIN_FILENO))
-		return (1);
-	if (convert_map(&map, STDIN_FILENO))
-		return (1);
-	ft_dprintf(2, "charset=%s | height=%d | width=%d\n", map.c, map.heigh, map.width);
-	write(2, map.map, map.heigh * map.width);
-	test(&map);
-	display_map(&map);
+	if (ac == 1)
+		brain(NULL);
+	else
+	{
+		i = 1;
+		while (av[i])
+		{
+			brain(av[i++]);
+			if (ac != 2)
+				write(1, "\n", 1);
+		}
+	}
 	return (0);
 }

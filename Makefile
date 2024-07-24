@@ -16,6 +16,7 @@ SRC = \
 	main \
 	convert_map \
 	display_map \
+	brain \
 
 # ********** ENV ********** #
 

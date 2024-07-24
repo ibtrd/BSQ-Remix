@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:37:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 01:24:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 01:57:53 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ typedef struct s_map
 	char	c[CHARS];
 }	t_map;
 
-int	convert_map(t_map *map, int fd);
-int	get_map_infos(t_map *map, int fd);
-int	display_map(t_map *map);
-int	test(t_map *map);
+void	brain(char *filepath);
+int		convert_map(t_map *map, int fd);
+int		get_map_infos(t_map *map, int fd);
+int		display_map(t_map *map);
+int		test(t_map *map);
 
 #endif //BSQ_H /* *********************************************************** */
