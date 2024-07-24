@@ -65,8 +65,8 @@ ifeq ($(MODE),debug)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3
 else ifeq ($(MODE),fsanitize)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3 -fsanitize=address
-else ifeq ($(MODE),4K)
-DEFINES += RES_4K=1
+else ifeq ($(MODE),color)
+SRC := $(filter-out display_map,$(SRC)) display_map_bonus
 else ifneq ($(MODE),)
 ERROR = MODE
 endif
@@ -115,9 +115,9 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 $(LIBS_PATH): FORCE | PREMAKE
 	@$(MAKE) -C $(@D)
 
-.PHONY : 4K
-4K :
-	$(MAKE) MODE=4K
+.PHONY : color
+color :
+	$(MAKE) MODE=color
 
 .PHONY : debug
 debug :

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 23:05:26 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 06:10:11 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 21:53:56 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int	convert_map(t_map *map, int fd)
 			return (FAILURE);
 		}
 		free(line);
+		n++;
 	}
 	map->map = buffer.ptr;
-	return (SUCCESS);
+	return (n != map->heigh);
 }
 
 static int	convert_line(t_map *map, char *line, t_vector *buffer)

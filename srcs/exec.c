@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:50:09 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/07/24 06:01:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 18:34:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	*alloc_int_map(t_map map)
 		i++;
 		j++;
 	}
-
 	return (int_map);
 }
 
