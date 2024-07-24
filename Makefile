@@ -18,14 +18,7 @@ SRC = \
 	display_map \
 	brain \
 	set_map_params \
-
-# ********** ENV ********** #
-
-SRC += $(addprefix $(EXEC_DIR),$(EXEC_SRC))
-
-EXEC_DIR = execution/
-EXEC_SRC = \
-	exec
+	exec \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
