@@ -3,76 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 23:05:26 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 04:44:16 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 06:10:11 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <stdlib.h>
 
 #include "bsq.h"
-#include "ft_vector.h"
 #include "libft.h"
-#include "ft_printf.h"
 
-int	set_infos(t_map *map, char *line)
-{
-	int		i;
-	char	*l2;
-
-	i = ft_strlen(line);
-	if (i < 4 || line[--i] != '\n')
-		return (FAILURE);
-	map->c[FULL] = line[--i];
-	map->c[OBSTACLE] = line[--i];
-	map->c[EMPTY] = line[--i];
-	line[i] = '\0';
-	errno = 0;
-	map->heigh = ft_strtoi(line, &l2);
-	if (*l2 || errno || map->heigh < 0)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
-int	get_map_infos(t_map *map, int fd)
-{
-	char	*line;
-
-	if (get_next_line(fd, &line) == FAILURE || !line)
-		return (FAILURE);
-	if (set_infos(map, line))
-	{
-		free(line);
-		return (FAILURE);
-	}
-	free(line);
-	return (SUCCESS);
-}
-
-int	convert_line(t_map *map, char *line, t_vector *buffer)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (line[i] != map->c[EMPTY] && line[i] != map->c[OBSTACLE])
-			return (FAILURE);
-		i++;
-	}
-	if (line[i] != '\n')
-		return (FAILURE);
-	if (map->width == 0)
-		map->width = i;
-	else if (map->width != i)
-		return (FAILURE);
-	if (ft_vector_join(buffer, line, i + 1))
-		return (FAILURE);
-	return (SUCCESS);
-}
+static int	convert_line(t_map *map, char *line, t_vector *buffer);
 
 int	convert_map(t_map *map, int fd)
 {
@@ -93,5 +36,27 @@ int	convert_map(t_map *map, int fd)
 		free(line);
 	}
 	map->map = buffer.ptr;
+	return (SUCCESS);
+}
+
+static int	convert_line(t_map *map, char *line, t_vector *buffer)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != map->c[EMPTY] && line[i] != map->c[OBSTACLE])
+			return (FAILURE);
+		i++;
+	}
+	if (line[i] != '\n')
+		return (FAILURE);
+	if (map->width == 0)
+		map->width = i;
+	else if (map->width != i)
+		return (FAILURE);
+	if (ft_vector_join(buffer, line, i + 1))
+		return (FAILURE);
 	return (SUCCESS);
 }

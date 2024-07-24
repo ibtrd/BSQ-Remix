@@ -17,6 +17,7 @@ SRC = \
 	convert_map \
 	display_map \
 	brain \
+	set_map_params \
 
 # ********** ENV ********** #
 
@@ -43,7 +44,7 @@ INCS = \
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
-OFLAGS 		=	-O3
+OFLAGS 		=	-Ofast
 
 DEFINES		=
 

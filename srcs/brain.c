@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   brain.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 01:27:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 04:49:00 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 06:10:49 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#include "libft.h"
 #include "bsq.h"
+#include "libft.h"
 
 int	solve(int fd)
 {
 	t_map	map;
-	int 	status;
+	int		status;
 
 	map = (t_map){0};
 	if (get_map_infos(&map, fd))
@@ -44,7 +44,7 @@ void	brain(char *filepath)
 	else
 		fd = open(filepath, O_RDONLY);
 	if (fd == -1 || solve(fd))
-		write(STDERR_FILENO, "map error\n", 10);
+		write(STDERR_FILENO, MAP_ERROR, ft_strlen(MAP_ERROR));
 	if (fd > 0)
 		close(fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 01:09:42 by ibertran          #+#    #+#             */
-/*   Updated: 2024/07/24 04:04:10 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 05:53:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int	display_map(t_map *map)
 {
-	write(STDOUT_FILENO, map->map, map->heigh * (map->width + 1));
-	return (SUCCESS);
+	const int	size = map->heigh * (map->width + 1);
+
+	return (write(STDOUT_FILENO, map->map, size) != size);
 }
