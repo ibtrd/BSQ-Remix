@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:50:09 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/07/24 01:19:10 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/07/24 02:03:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "bsq.h"
 
@@ -25,7 +26,7 @@ int	*alloc_int_map(t_map *map)
 		return (NULL);
 	while (i < map->width * map->heigh)
 	{
-		if (map->map[i] == 1)
+		if (map->map[i] == OBSTACLE)
 			int_map[i] = 0;
 		else if (i < map->width || i % map->width == 0)
 			int_map[i] = 1;
@@ -36,7 +37,7 @@ int	*alloc_int_map(t_map *map)
 	return (int_map);
 }
 
-int	fill_int_map(int **int_map, t_map *map)
+int	fill_int_map(int *int_map, t_map *map)
 {
 	int	i;
 	int	n;
@@ -48,16 +49,19 @@ int	fill_int_map(int **int_map, t_map *map)
 	max = 0;
 	while (i < map->width * map->heigh)
 	{
-		if (*int_map[i] == -1)
+		if (int_map[i] == -1)
 		{
-			n = *int_map[i - 1];
-			if (n > *int_map[i - map->width])
-				n = *int_map[i - map->width];
-			if (n > *int_map[i - map->width - 1])
-				n = *int_map[i - map->width - 1];
-			*int_map[i] = n + 1;
+			n = int_map[i - 1];
+			if (n > int_map[i - map->width])
+				n = int_map[i - map->width];
+			if (n > int_map[i - map->width - 1])
+				n = int_map[i - map->width - 1];
+			int_map[i] = n + 1;
 			if (n + 1 > max)
+			{
+				max = n + 1;
 				index_max = i;
+			}
 		}
 		i++;
 	}
@@ -89,6 +93,16 @@ int	fill_map(int *int_map, t_map *map, int index_max)
 	return (EXIT_SUCCESS);
 }
 
+void	print_int_map(int *int_map, int x, int y)
+{
+	int i = 0;
+	while (i < x * y)
+	{
+		printf("%d", int_map[i]);
+		i++;
+	}
+}
+
 int	test(t_map *map)
 {
 	int	*int_map;
@@ -97,6 +111,6 @@ int	test(t_map *map)
 	int_map = alloc_int_map(map);
 	if (NULL == int_map)
 		return (EXIT_FAILURE);
-	index_max = fill_int_map(&int_map, map);
+	index_max = fill_int_map(int_map, map);
 	return (fill_map(int_map, map,index_max));
 }
